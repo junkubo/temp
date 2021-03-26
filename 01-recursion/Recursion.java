@@ -29,19 +29,22 @@ public class Recursion {
   }
 
   public static double sqrt2(double x, double n) {
-    if ((Math.abs(x*x) - n) / n < 0.00001) {
+    if ((Math.abs((x*x) - n)) / n < 0.00001) {
       return x;
     } else {
       return sqrt2((n / x + x) / 2, n);
     }
   }
   public static double sqrt(double n) {
+      if (n <= 0) {
+        throw new IllegalArgumentException("No zero or negatives!");
+      }
       double x = n/2;
       return(sqrt2(x, n));
   }
 
   public static void main(String[] args) {
-    System.out.println(sqrt(5.0));
+    System.out.println(sqrt(5));
     System.out.println(reverse("thisiscool"));
     System.out.println(countNoDoubleLetterWords(3, ""));
   }
