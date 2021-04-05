@@ -27,24 +27,27 @@ public class MyDeque<E>{
   }
   public String toString(){
     String str = "{";
-    if (start < end) {
-      for (int i = start; i <= end; i++) {
-        str += data[i];
-        if (i != end) str += ", ";
-      }
+    if (start < 0) return "{}";
+
+    if (start <= end) {
+    for (int i = start; i <= end; i++) {
+      str += data[i];
+      if (i != end) str += ", ";
+    }
 
     } else {
-      for (int i = start; i < data.length; i++) {
-        str += data[i];
-        str += ", ";
-      }
-      for (int i = 0; i <= end; i++) {
-        str += data[i];
-        if (i != end) str += ", ";
-      }
+    for (int i = start; i < data.length; i++) {
+      str += data[i];
+      str += ", ";
     }
-    str += "}";
+    for (int i = 0; i <= end; i++) {
+      str += data[i];
+      if (i != end) str += ", ";
+    }
+
+  }
     //System.out.println("start, end: " + start + ", " + end);
+    str += "}";
     return str;
   }
   public void addFirst(E element){
@@ -88,6 +91,7 @@ public class MyDeque<E>{
     if ((start == 0 && end == size-1) || start == end+1) {
       throw new NoSuchElementException("empty list");
     }
+    E temp_first = data[start];
     if (start == end)
     {
         start = -1;
@@ -96,12 +100,13 @@ public class MyDeque<E>{
     else if (start == size -1) start = 0;
     else start = start+1;
     size2 -= 1;
-    return data[start];
+    return temp_first;
   }
   public E removeLast(){
     if ((start == 0 && end == size-1) || start == end+1) {
       throw new NoSuchElementException("empty list");
     }
+    E temp_end = data[end];
     if (start == end)
     {
       start = -1;
@@ -113,7 +118,7 @@ public class MyDeque<E>{
       end = end-1;
 
     size2 -= 1;
-    return data[end];
+    return temp_end;
   }
   public E getFirst(){
     if ((start == 0 && end == size-1) || start == end+1) {
